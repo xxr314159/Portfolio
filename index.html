@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数字书房 · 袭锌睿</title>
+  <meta name="description" content="袭锌睿的数字书房——AI 应用开发者，在这里慢慢读、慢慢看、慢慢聊。">
+  <link rel="icon" href="https://github.com/xxr314159.png?size=32">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="lib/github-dark.min.css">
+</head>
+<body>
+
+  <!-- 背景层 -->
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <canvas id="particles" class="bg-particles" aria-hidden="true"></canvas>
+
+  <!-- 光标跟随光圈 -->
+  <div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- 安静模式 -->
+  <button id="quiet-toggle" class="quiet-toggle" aria-label="切换安静模式" title="安静模式">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3a6 6 0 0 0-6 6c0 7-3 9-3 9h18s-3-2-3-9a6 6 0 0 0-6-6"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+  </button>
+
+  <!-- 阅读进度条 -->
+  <div id="progress-bar" class="progress-bar" aria-hidden="true"></div>
+
+  <!-- 侧边锚点 -->
+  <nav id="side-anchor" class="side-anchor" aria-label="页面锚点导航">
+    <a href="#about" class="anchor-dot" data-target="about" aria-label="关于"><span class="dot"></span></a>
+    <a href="#skills" class="anchor-dot" data-target="skills" aria-label="技能"><span class="dot"></span></a>
+    <a href="#projects" class="anchor-dot" data-target="projects" aria-label="项目"><span class="dot"></span></a>
+    <a href="#writing" class="anchor-dot" data-target="writing" aria-label="随笔"><span class="dot"></span></a>
+    <a href="#notes" class="anchor-dot" data-target="notes" aria-label="留言"><span class="dot"></span></a>
+    <a href="#letter" class="anchor-dot" data-target="letter" aria-label="联系"><span class="dot"></span></a>
+  </nav>
+
+  <!-- 底部导航（手机） -->
+  <nav id="bottom-nav" class="bottom-nav" aria-label="底部导航">
+    <a href="#about" aria-label="关于"><span>👤</span></a>
+    <a href="#skills" aria-label="技能"><span>📚</span></a>
+    <a href="#projects" aria-label="项目"><span>🧩</span></a>
+    <a href="#letter" aria-label="联系"><span>✉️</span></a>
+  </nav>
+
+  <!-- 博客目录 -->
+  <aside id="toc" class="toc" aria-label="文章目录"></aside>
+
+  <!-- ============ 卷轴开始 ============ -->
+  <main class="scroll-scroll">
+
+    <!-- 关于 -->
+    <section id="about" class="section">
+      <div class="about-wrap fade-up">
+        <div class="portrait">
+          <img src="https://github.com/xxr314159.png?size=240" alt="袭锌睿头像" loading="lazy">
+          <span class="portrait-tag">深夜书桌旁</span>
+        </div>
+        <div class="about-text">
+          <h1 class="about-name">袭锌睿</h1>
+          <p class="about-line">AI 应用开发者 · 实训中 · 用大模型造东西的人</p>
+          <p class="about-meta">GitHub · 邮箱 · 偶尔写点碎碎念</p>
+          <button class="copy-intro" id="copy-intro" type="button">复制我的简介</button>
+          <span class="copy-feedback" id="copy-feedback">已复制 ✨</span>
+        </div>
+      </div>
+
+      <div class="timeline fade-up">
+        <div class="timeline-node">
+          <span class="tl-date">2026 · 秋</span>
+          <h4>AI 实训项目开发</h4>
+          <p>Chrome 电商图片下载插件 ImageGrab · GitHub Pages 部署个人网站 · 大模型三阶段训练</p>
+        </div>
+        <div class="timeline-node">
+          <span class="tl-date">2026 · 春</span>
+          <h4>Llama-8B LoRA 微调</h4>
+          <p>魔塔平台完成 LoRA 微调，参数占比仅 0.39%，训练推理 prompt 严格对齐</p>
+        </div>
+      </div>
+
+      <div class="snapshots fade-up">
+        <h3 class="snap-title">📝 随想快照</h3>
+        <ul class="snap-list">
+          <li class="snap-item"><span class="snap-time">10.26</span><p>训练 prompt 差一个标点模型就崩了——讲座说的"对齐"不是说笑的。</p></li>
+          <li class="snap-item"><span class="snap-time">10.24</span><p>深夜改代码最顺，台灯 + AI 辅助，一小时顶白天三小时。</p></li>
+          <li class="snap-item"><span class="snap-time">10.20</span><p>GitHub push 不上，查了半小时发现 git 代理没配——浏览器能上不代表 git 能上。</p></li>
+          <li class="snap-item"><span class="snap-time">10.15</span><p>AI 生成 PRD 后必须自己读一遍，它会把个人网站生成为全栈项目。</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 技能 -->
+    <section id="skills" class="section">
+      <h2 class="section-heading fade-up">📚 书架 · 技能藏书阁</h2>
+      <p class="section-sub fade-up">点一本书，翻开看里面写了什么</p>
+
+      <div class="book-row fade-up">
+        <h3 class="book-class">理论储备 · Theory</h3>
+        <div class="book-grid">
+          <article class="book-card">
+            <div class="book-cover">大模型训练全流程</div>
+            <div class="book-inner"><p>预训练 → SFT → LoRA 三阶段串联，理解 Loss 遮盖机制、prompt 对齐、LoRA 参数冻结原理。</p><a href="#writing">相关随笔 →</a></div>
+          </article>
+          <article class="book-card">
+            <div class="book-cover">Transformer 架构</div>
+            <div class="book-inner"><p>Self-Attention 机制、位置编码、多头注意力的数学直觉与实现细节。</p></div>
+          </article>
+          <article class="book-card">
+            <div class="book-cover">Chrome 扩展 MV3</div>
+            <div class="book-inner"><p>Manifest V3 权限模型、Service Worker、OffscreenCanvas PNG 转换、消息通信。</p><a href="#projects">相关作品 →</a></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="book-row fade-up">
+        <h3 class="book-class">工程实践 · Practice</h3>
+        <div class="book-grid">
+          <article class="book-card">
+            <div class="book-cover">ImageGrab 插件</div>
+            <div class="book-inner"><p>淘宝/京东/拼多多商品页高清图提取，并发探测、尺寸过滤、批量下载 PNG、文件名补零。</p><a href="https://github.com/xxr314159/ImageGrab" target="_blank" rel="noopener">GitHub →</a></div>
+          </article>
+          <article class="book-card">
+            <div class="book-cover">Llama-8B LoRA</div>
+            <div class="book-inner"><p>魔塔平台 LoRA 微调，LoRA rank=8，参数占比 0.39%，训练推理 prompt 严格对齐。</p></div>
+          </article>
+          <article class="book-card">
+            <div class="book-cover">Prompt 工程</div>
+            <div class="book-inner"><p>角色设定 + Few-shot + 结构化输出，训练/推理 prompt 严格对齐不漂移。</p></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="book-row fade-up">
+        <h3 class="book-class">工具库 · Tools</h3>
+        <div class="book-grid">
+          <article class="book-card">
+            <div class="book-cover">Git / GitHub</div>
+            <div class="book-inner"><p>版本控制、PR 工作流、Pages 部署、代理配置、常见报错排查。</p></div>
+          </article>
+          <article class="book-card">
+            <div class="book-cover">Cursor + DeepSeek</div>
+            <div class="book-inner"><p>AI 编程助手 Auto 模式，BYOK 模型配置，与 AI 对话协作开发。</p></div>
+          </article>
+          <article class="book-card">
+            <div class="book-cover">Python</div>
+            <div class="book-inner"><p>数据处理、脚本自动化、API 调用、AI 模型训练脚本编写。</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目 -->
+    <section id="projects" class="section">
+      <h2 class="section-heading fade-up">🧩 墙 · 项目剪影</h2>
+      <p class="section-sub fade-up">点一张剪影，看背后的故事</p>
+
+      <div class="waterfall fade-up">
+        <article class="project-card">
+          <div class="pc-meta"><span class="pc-tag">开发 3 天</span><span class="pc-tag">实训作业</span></div>
+          <h3>ImageGrab · 电商图片提取</h3>
+          <p>Chrome 扩展，淘宝/天猫/京东/拼多多商品页一键提取高清图，批量下载 PNG，文件名自动补零。画廊页勾选式批量操作。</p>
+          <a class="pc-detail" href="https://github.com/xxr314159/ImageGrab" target="_blank" rel="noopener">GitHub →</a>
+        </article>
+        <article class="project-card">
+          <div class="pc-meta"><span class="pc-tag">开发 5 天</span><span class="pc-tag">实训项目</span></div>
+          <h3>Llama-8B LoRA 微调</h3>
+          <p>魔塔平台三阶段训练——预训练基座、SFT 指令微调、LoRA 参数高效微调。LoRA 占比 0.39%，训练推理 prompt 严格对齐。</p>
+          <button class="pc-detail" type="button">看详情 →</button>
+        </article>
+        <article class="project-card">
+          <div class="pc-meta"><span class="pc-tag">半天</span><span class="pc-tag">零代码 Demo</span></div>
+          <h3>零代码天气预报站</h3>
+          <p>百度秒哒 + v0.dev 生成的天气预报网站，AI 辅助全流程，验证零代码开发的可行性。</p>
+          <button class="pc-detail" type="button">看详情 →</button>
+        </article>
+        <article class="project-card">
+          <div class="pc-meta"><span class="pc-tag">1 天</span><span class="pc-tag">当前项目</span></div>
+          <h3>数字书房 Portfolio</h3>
+          <p>个人名片站，亮色玻璃拟态风格，Markdown 博客渲染，访客留言板，安静模式切换。部署到 GitHub Pages。</p>
+          <button class="pc-detail" type="button">看详情 →</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- 随笔 -->
+    <section id="writing" class="section">
+      <h2 class="section-heading fade-up">✍️ 书桌 · 随笔</h2>
+      <p class="section-sub fade-up">偶尔写点技术笔记和碎碎念</p>
+
+      <div class="writing-toolbar fade-up">
+        <span class="writing-count" id="post-count">加载中...</span>
+        <div class="writing-actions">
+          <button id="font-serif" class="font-toggle" type="button">衬线</button>
+          <button id="font-mono" class="font-toggle" type="button">等宽</button>
+        </div>
+      </div>
+
+      <div id="post-list" class="post-list fade-up">
+        <p class="loading">正在取书...</p>
+      </div>
+
+      <article id="post-detail" class="post-detail" hidden>
+        <button id="post-back" class="post-back" type="button">← 回到书架</button>
+        <h1 id="post-title"></h1>
+        <time id="post-date"></time>
+        <div id="post-body" class="post-body"></div>
+        <details class="post-notes">
+          <summary>📋 项目复盘笔记</summary>
+          <div id="post-notes-content"></div>
+        </details>
+      </article>
+    </section>
+
+    <!-- 留言板 -->
+    <section id="notes" class="section">
+      <h2 class="section-heading fade-up">📝 便签墙 · 旅人留言</h2>
+      <p class="section-sub fade-up">写张便签贴在墙上，下次路过还能看到</p>
+
+      <form id="message-form" class="message-form fade-up" novalidate>
+        <div class="mf-row">
+          <label for="mf-name">昵称（可选）</label>
+          <input id="mf-name" type="text" maxlength="20" placeholder="匿名旅人">
+        </div>
+        <div class="mf-row">
+          <label for="mf-body">留言</label>
+          <textarea id="mf-body" rows="3" maxlength="500" placeholder="10~500 字"></textarea>
+        </div>
+        <p class="mf-error" id="mf-error" aria-live="polite"></p>
+        <button id="mf-submit" type="submit" class="mf-submit">✨ 贴上便签</button>
+      </form>
+
+      <ul id="message-wall" class="message-wall fade-up">
+        <li class="mw-empty">墙上还很空，来写第一张吧 ✨</li>
+      </ul>
+    </section>
+
+    <!-- 联系 -->
+    <section id="letter" class="section">
+      <h2 class="section-heading fade-up">✉️ 信封 · 联系</h2>
+      <p class="section-sub fade-up">想聊点什么？写一封信过来</p>
+
+      <div class="letter-wrap fade-up">
+        <a class="letter-link" href="https://github.com/xxr314159" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          GitHub
+        </a>
+        <button id="copy-email" class="letter-link" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-10 6L2 7"/>
+          </svg>
+          复制邮箱
+        </button>
+        <a class="letter-link" href="assets/resume.pdf" download>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          下载简历
+        </a>
+      </div>
+      <p class="letter-note">邮箱已抄好，简历随时可取。<span id="email-hint"></span></p>
+    </section>
+
+    <footer class="scroll-footer">
+      <p>Stay curious, keep building.</p>
+      <p>© <span id="footer-year"></span> 袭锌睿 · Built with ❤️ + AI</p>
+    </footer>
+
+  </main>
+  <!-- ============ 卷轴结束 ============ -->
+
+  <script src="lib/marked.min.js"></script>
+  <script src="lib/highlight.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
